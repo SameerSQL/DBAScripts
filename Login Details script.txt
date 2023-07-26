@@ -1,0 +1,11 @@
+select 
+    @@SERVERNAME as servername, 
+    name, 
+    IS_SRVROLEMEMBER('sysadmin', name) as SYSADMIN,
+    type_desc,
+    create_date,
+    is_policy_checked,
+    is_disabled,
+    password_hash,
+    PWDCOMPARE(name, password_hash) as UsernameAsPassword
+FROM sys.sql_logins

@@ -1,0 +1,6 @@
+DECLARE @SQL NVARCHAR(3000)
+set @SQL=''
+Select @SQL=LTRIM(RTRIM(@SQL))+ 'kill ' +convert(Varchar(10),spid)+';'+CHAR(13)
+from master..sysprocesses where dbid=db_id('Test') -- Enter database nam in db_id
+print @SQL
+exec sp_executesql @SQL
